@@ -12,8 +12,12 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@core/*": ["src/core/*"],
-      "@modules/*": ["src/modules/*"]
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ]
     },
     "incremental": true,
     "skipLibCheck": true,
