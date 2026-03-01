@@ -1,19 +1,25 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import serverless from 'serverless-http';
+import { AppModule } from '../src/app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 const server = express();
 
+let cachedApp: any;
+
 async function bootstrap() {
-  const app = await NestFactory.create(
-    AppModule,
-    new ExpressAdapter(server),
-  );
-  await app.init();
+  if (!cachedApp) {
+    const nestApp = await NestFactory.create(
+      AppModule,
+      new ExpressAdapter(server),
+    );
+    await nestApp.init();
+    cachedApp = server;
+  }
+  return cachedApp;
 }
 
-bootstrap();
-
-export const handler = serverless(server);
+export default async function handler(req: Request, res: Response) {
+  const app = await bootstrap();
+  return app(req, res);
+}
