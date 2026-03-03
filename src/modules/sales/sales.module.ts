@@ -4,7 +4,7 @@ import { SalesService } from './sales.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Sale, SaleSchema } from '../../core/schema/sales.schema';
 import { Product, ProductSchema } from '../../core/schema/product.schema';
-import { AuthModule } from '@modules/auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [

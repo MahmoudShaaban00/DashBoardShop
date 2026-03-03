@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AttendanceService } from './attendance.service';
 import { AttendanceController } from './attendance.controller';
-import { Attendance, AttendanceSchema } from '@core/schema/attendance.schema';
-import { Employee, EmployeeSchema } from '@core/schema/employee.schema';
-import { AuthModule } from '@modules/auth/auth.module';
+import { Attendance, AttendanceSchema } from '../../core/schema/attendance.schema';
+import { Employee, EmployeeSchema } from '../../core/schema/employee.schema';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
