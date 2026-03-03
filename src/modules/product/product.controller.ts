@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Get, Param, Put, Delete, UseGuards } from "@nestjs/common";
 import { ProductService } from "./product.service";
 import { CreateProductDto, UpdateProductDto, ParamsIdDto } from "./dto/product.dto";
-import { AuthGuard } from "src/core/guards/auth.guard";
+import { AuthGuard } from '../../core/guards/auth.guard';
 
 @Controller("products")
 @UseGuards(AuthGuard)

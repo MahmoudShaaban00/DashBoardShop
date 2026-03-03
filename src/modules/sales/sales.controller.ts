@@ -1,7 +1,7 @@
 import {Controller,Post,Get,Body,Query, UseGuards} from '@nestjs/common';
 import { SalesService } from './sales.service';
 import { CreateSaleDto, DailySalesDto } from './dto/sales.dto';
-import { AuthGuard } from 'src/core/guards/auth.guard';
+import { AuthGuard } from '../../core/guards/auth.guard';
 
 @Controller('sales')
 @UseGuards(AuthGuard)

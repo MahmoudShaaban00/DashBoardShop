@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { AttendanceService } from './attendance.service';
 import { CreateAttendanceDto, UpdateAttendanceDto, ParamIdDto } from './dto/attendance.dto';
-import { AuthGuard } from 'src/core/guards/auth.guard';
+import { AuthGuard } from '../../core/guards/auth.guard';
 
 @Controller('attendance')
 @UseGuards(AuthGuard) // تأكد من أن المستخدم مصرح له
