@@ -3,7 +3,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
+import  bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { Manager } from '../../../core/schema/manager.schema';
 import { SigninDto } from './dto/auth.dto';

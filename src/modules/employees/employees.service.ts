@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Employee } from '@core/schema/employee.schema';
+import { Employee } from '../../core/schema/employee.schema';
 import { JwtService } from '@nestjs/jwt';
 import { EmployeeDTO } from './dto/employee.dto';
 
