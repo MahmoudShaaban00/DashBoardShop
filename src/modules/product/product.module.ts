@@ -3,17 +3,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
 import { Product, ProductSchema } from '../../core/schema/product.schema';
-import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
-    JwtModule.register({
-      secret: process.env.JWT, // لازم يكون موجود في Vercel
-      signOptions: { expiresIn: '1h' },
-    }),
+    MongooseModule.forFeature([
+      { name: Product.name, schema: ProductSchema },
+    ]),
+    AuthModule, // 👈 استورد AuthModule فقط
   ],
   controllers: [ProductController],
-  providers: [ProductService], // ✅ مش لازم JwtService هنا
+  providers: [ProductService],
 })
 export class ProductModule {}

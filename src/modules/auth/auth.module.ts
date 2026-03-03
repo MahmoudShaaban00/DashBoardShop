@@ -4,20 +4,19 @@ import { JwtModule } from '@nestjs/jwt';
 import { SigninService } from '../auth/signin/signin.service';
 import { SigninController } from '../auth/signin/signin.controller';
 import { Manager, ManagerSchema } from "../../core/schema/manager.schema";
-import { config } from 'dotenv';
-
-config(); // تحميل متغيرات البيئة
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Manager.name, schema: ManagerSchema }]),
+    MongooseModule.forFeature([
+      { name: Manager.name, schema: ManagerSchema },
+    ]),
     JwtModule.register({
-      secret: process.env.JWT,
+      secret: process.env.JWT, // 👈 الاسم الموحد
       signOptions: { expiresIn: '1d' },
     }),
   ],
   controllers: [SigninController],
   providers: [SigninService],
-  exports: [SigninService, JwtModule],
+  exports: [JwtModule], // 👈 أهم حاجة عشان باقي الموديولز تستخدمه
 })
 export class AuthModule {}

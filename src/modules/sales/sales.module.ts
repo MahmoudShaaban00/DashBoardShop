@@ -4,7 +4,7 @@ import { SalesService } from './sales.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Sale, SaleSchema } from '../../core/schema/sales.schema';
 import { Product, ProductSchema } from '../../core/schema/product.schema';
-import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -12,12 +12,9 @@ import { JwtModule } from '@nestjs/jwt';
       { name: Sale.name, schema: SaleSchema },
       { name: Product.name, schema: ProductSchema },
     ]),
-    JwtModule.register({
-      secret: process.env.JWT, // لازم موجود على Vercel
-      signOptions: { expiresIn: '1h' },
-    }),
+    AuthModule, // 👈 استورد AuthModule فقط
   ],
   controllers: [SalesController],
-  providers: [SalesService], // ✅ شيل JwtService من هنا
+  providers: [SalesService],
 })
 export class SalesModule {}

@@ -3,15 +3,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { EmployeesController } from './employees.controller';
 import { EmployeesService } from './employees.service';
 import { Employee, EmployeeSchema } from '@core/schema/employee.schema';
-import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Employee.name, schema: EmployeeSchema }]),
-    JwtModule.register({
-      secret: process.env.JWT, // لازم يكون موجود في Vercel env
-      signOptions: { expiresIn: '1h' },
-    }),
+    AuthModule, // 👈 استورد AuthModule فقط
   ],
   controllers: [EmployeesController],
   providers: [EmployeesService],

@@ -4,7 +4,7 @@ import { AttendanceService } from './attendance.service';
 import { AttendanceController } from './attendance.controller';
 import { Attendance, AttendanceSchema } from '@core/schema/attendance.schema';
 import { Employee, EmployeeSchema } from '@core/schema/employee.schema';
-import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -12,12 +12,9 @@ import { JwtModule } from '@nestjs/jwt';
       { name: Attendance.name, schema: AttendanceSchema },
       { name: Employee.name, schema: EmployeeSchema },
     ]),
-    JwtModule.register({
-      secret: process.env.JWT, // لازم موجود في env على Vercel
-      signOptions: { expiresIn: '1h' },
-    }),
+    AuthModule, // 👈 استورد AuthModule بس
   ],
   controllers: [AttendanceController],
-  providers: [AttendanceService], // ✅ شيل JwtService من هنا
+  providers: [AttendanceService],
 })
 export class AttendanceModule {}
