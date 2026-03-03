@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { Manager } from '../../../core/schema/manager.module';
+import { Manager } from '../../../core/schema/manager.schema';
 import { SigninDto } from './dto/auth.dto';
 
 

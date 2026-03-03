@@ -1,16 +1,25 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Employee } from 'src/core/schema/employee.module';
+import { Employee } from '@core/schema/employee.schema';
+import { JwtService } from '@nestjs/jwt';
+import { EmployeeDTO } from './dto/employee.dto';
 
 @Injectable()
 export class EmployeesService {
-  constructor(@InjectModel('Employee') private employeeModel: Model<Employee>,) {}
+  constructor(
+    @InjectModel(Employee.name) private employeeModel: Model<Employee>,
+    private jwtService: JwtService,
+  ) {}
+
+  // 🔹 Test endpoint
+  async testConnection(): Promise<boolean> {
+    return true;
+  }
 
   // 🔹 Insert
-  async addEmployee(employee: Employee) {
+  async addEmployee(employee: EmployeeDTO) {
     await this.employeeModel.create(employee);
-
     const employees = await this.employeeModel
       .find()
       .select('name email position salary');
@@ -50,7 +59,7 @@ export class EmployeesService {
   }
 
   // 🔹 Update
-  async updateEmployee(id: string, employee: Employee) {
+  async updateEmployee(id: string, employee: EmployeeDTO) {
     const updated = await this.employeeModel
       .findByIdAndUpdate(id, employee, { new: true })
       .select('name email position salary');

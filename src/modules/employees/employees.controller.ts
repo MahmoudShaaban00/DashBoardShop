@@ -4,35 +4,38 @@ import { EmployeeDTO } from './dto/employee.dto';
 import { AuthGuard } from 'src/core/guards/auth.guard';
 
 @Controller('employees')
-@UseGuards(AuthGuard) // تأكد من أن المستخدم مصرح له
+@UseGuards(AuthGuard)
 export class EmployeesController {
-    constructor(private readonly employeesService: EmployeesService){}
+  constructor(private readonly employeesService: EmployeesService) {}
 
-    @Post()
-    createEmployee(@Body() employee: EmployeeDTO){
-        return this.employeesService.addEmployee(employee);
-    }
+  @Post()
+  createEmployee(@Body() employee: EmployeeDTO) {
+    return this.employeesService.addEmployee(employee);
+  }
 
-    @Get()
-    getAllEmployees(){
-        return this.employeesService.getAllEmployees();
-    }
+  @Get()
+  getAllEmployees() {
+    return this.employeesService.getAllEmployees();
+  }
 
-    @Get(':id')
-    getEmployee(@Param('id') id: string){
-        return this.employeesService.getEmployee(id);
-    }
+  @Get(':id')
+  getEmployee(@Param('id') id: string) {
+    return this.employeesService.getEmployee(id);
+  }
 
-    @Delete(':id')
-    deleteEmployee(@Param('id') id: string){
-        return this.employeesService.deleteEmployee(id);
-    }
+  @Delete(':id')
+  deleteEmployee(@Param('id') id: string) {
+    return this.employeesService.deleteEmployee(id);
+  }
 
-    @Put(':id')
-    updateEmployee(
-        @Param('id') id: string,
-        @Body() employee: EmployeeDTO
-    ){
-        return this.employeesService.updateEmployee(id, employee);
-    }
+  @Put(':id')
+  updateEmployee(@Param('id') id: string, @Body() employee: EmployeeDTO) {
+    return this.employeesService.updateEmployee(id, employee);
+  }
+
+  // 🔹 Test endpoint
+  @Get('test')
+  testConnection() {
+    return this.employeesService.testConnection();
+  }
 }

@@ -6,8 +6,8 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Connection } from 'mongoose';
 import { InjectConnection } from '@nestjs/mongoose';
-import { Sale, SaleDocument } from '../../core/schema/sales.module';
-import { Product, ProductDocument } from '../../core/schema/product.module';
+import { Sale, SaleDocument } from '../../core/schema/sales.schema';
+import { Product, ProductDocument } from '../../core/schema/product.schema';
 
 @Injectable()
 export class SalesService {

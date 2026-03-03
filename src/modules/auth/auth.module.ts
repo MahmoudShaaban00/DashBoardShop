@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { JwtModule } from '@nestjs/jwt';
 import { SigninService } from '../auth/signin/signin.service';
 import { SigninController } from '../auth/signin/signin.controller';
-import { Manager, ManagerSchema } from "../../core/schema/manager.module";
+import { Manager, ManagerSchema } from "../../core/schema/manager.schema";
 import { config } from 'dotenv';
 
 config(); // تحميل متغيرات البيئة
