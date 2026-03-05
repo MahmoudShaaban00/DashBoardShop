@@ -11,10 +11,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, adapter);
 
   // تفعيل CORS عشان الـ frontend يقدر يطلب من الـ backend
-  app.enableCors({
-    origin: ['http://localhost:3000', 'https://your-frontend.vercel.app'], 
-    credentials: true,
-  });
+app.enableCors({
+  origin: ['http://localhost:3000', 'https://your-frontend.vercel.app'], // رابط الـ frontend الحقيقي
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // مهم ل preflight
+  allowedHeaders: '*', // يسمح بأي header
+  credentials: true,
+});
 
   await app.init();
 }
