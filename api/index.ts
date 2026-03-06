@@ -5,23 +5,39 @@ import express, { Request, Response } from 'express';
 
 const server = express();
 
+// حل مشكلة CORS
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET,POST,PUT,DELETE,PATCH,OPTIONS'
+  );
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization'
+  );
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
+
 let cachedApp: any;
 
 async function bootstrap() {
   if (!cachedApp) {
-    const nestApp = await NestFactory.create(
+    const app = await NestFactory.create(
       AppModule,
       new ExpressAdapter(server),
     );
 
-    nestApp.enableCors({
-      origin: "*",
-      methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
-      allowedHeaders: "*",
-      credentials: true,
+    app.enableCors({
+      origin: '*',
     });
 
-    await nestApp.init();
+    await app.init();
     cachedApp = server;
   }
 
