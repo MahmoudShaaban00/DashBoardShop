@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import  express from 'express';
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 
 const server = express();
+
 let cachedApp: any;
 
 async function bootstrap() {
@@ -13,9 +13,18 @@ async function bootstrap() {
       AppModule,
       new ExpressAdapter(server),
     );
+
+    nestApp.enableCors({
+      origin: "*",
+      methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+      allowedHeaders: "*",
+      credentials: true,
+    });
+
     await nestApp.init();
     cachedApp = server;
   }
+
   return cachedApp;
 }
 
