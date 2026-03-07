@@ -1,38 +1,38 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AttendanceService } from './attendance.service';
-import { CreateAttendanceDto, UpdateAttendanceDto, ParamIdDto } from './dto/attendance.dto';
-import { AuthGuard } from '../../core/guards/auth.guard';
+import { CreateAttendanceDto, UpdateAttendanceDto, ParamIdDto } from './attendance.dto';
 
 @Controller('attendance')
-@UseGuards(AuthGuard) // تأكد من أن المستخدم مصرح له
 export class AttendanceController {
-    constructor(private readonly attendanceService: AttendanceService) {}
+  constructor(private readonly attendanceService: AttendanceService) {}
 
-    @Post()
-    async addAttendance(@Body() attendance: CreateAttendanceDto) {
-        return this.attendanceService.addAttendance(attendance);
-    }
+  @Get()
+  async getAll() {
+    const data = await this.attendanceService.getAll();
+    return { message: 'Attendance list fetched', data };
+  }
 
-    @Get()
-    async getAllAttendance() {
-        return this.attendanceService.getAllAttendances();
-    }
+  @Get(':id')
+  async getById(@Param() params: ParamIdDto) {
+    const data = await this.attendanceService.getById(params.id);
+    return { message: 'Attendance fetched', data };
+  }
 
-    @Get(':id')
-    async getAttendance(@Param() param: ParamIdDto) {
-        return this.attendanceService.getAttendanceById(param.id);
-    }
+  @Post()
+  async create(@Body() dto: CreateAttendanceDto) {
+    const data = await this.attendanceService.create(dto);
+    return { message: 'Attendance added', data };
+  }
 
-    @Put(':id')
-    async updateAttendance(
-        @Param() param: ParamIdDto,
-        @Body() attendance: UpdateAttendanceDto
-    ) {
-        return this.attendanceService.updateAttendance(param.id, attendance);
-    }
+  @Put(':id')
+  async update(@Param() params: ParamIdDto, @Body() dto: UpdateAttendanceDto) {
+    const data = await this.attendanceService.update(params.id, dto);
+    return { message: 'Attendance updated', data };
+  }
 
-    @Delete(':id')
-    async deleteAttendance(@Param() param: ParamIdDto) {
-        return this.attendanceService.deleteAttendance(param.id);
-    }
+  @Delete(':id')
+  async delete(@Param() params: ParamIdDto) {
+    await this.attendanceService.delete(params.id);
+    return { message: 'Attendance deleted' };
+  }
 }
