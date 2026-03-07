@@ -8,11 +8,12 @@ export class CreateAttendanceDto {
   @IsDateString()
   date: string;
 
-  @IsBoolean()
-  status: boolean; // true = present, false = absent
+  @IsEnum(['present', 'absent'])
+  status: 'present' | 'absent'; // نفس نوع الموديل
 
   @IsOptional()
-  deduction?: number; // يحسب في السيرفيس
+  @IsNumber()
+  deduction?: number;
 }
 
 // ===== Update Attendance =====
