@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsMongoId, IsOptional } from "class-validator";
+import { IsEnum, IsDateString, IsMongoId, IsOptional, IsNumber } from "class-validator";
 
 // ===== Create Attendance =====
 export class CreateAttendanceDto {
@@ -9,7 +9,7 @@ export class CreateAttendanceDto {
   date: string;
 
   @IsEnum(['present', 'absent'])
-  status: 'present' | 'absent'; // نفس نوع الموديل
+  status: 'present' | 'absent';
 
   @IsOptional()
   @IsNumber()
@@ -27,10 +27,11 @@ export class UpdateAttendanceDto {
   date?: string;
 
   @IsOptional()
-  @IsBoolean()
-  status?: boolean;
+  @IsEnum(['present', 'absent'])
+  status?: 'present' | 'absent';
 
   @IsOptional()
+  @IsNumber()
   deduction?: number;
 }
 
