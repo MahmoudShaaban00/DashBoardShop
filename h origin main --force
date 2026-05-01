@@ -1,0 +1,30 @@
+[33m35776ca[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Refactor AttendanceService with new methods
+[33mfbf1ca9[m Update attendance DTO to use enum for status
+[33m77771f5[m Change status to enum for attendance status
+[33m0dbbee6[m fuck error cors
+[33mabc20c2[m Update index.ts
+[33m0ef9b1e[m Refactor serverless handler and update CORS settings
+[33m2174f64[m Refactor bootstrap function and remove Express integration
+[33m1cc4270[m cors error
+[33m5e7c6b6[m Refactor CORS handling and integrate serverless-http
+[33m4c03a1c[m Enable CORS for Express server
+[33m6f2e6a4[m update project
+[33m74e7e7b[m update project
+[33me0c4870[m fix error cors
+[33m506fd77[m Enhance CORS settings in bootstrap function
+[33m2a3fbdb[m Setup NestJS with Express and configure CORS
+[33md7507ce[m fix error guards
+[33m22f4de6[m fix error modules path
+[33md9232d8[m fix error modules path
+[33m8b07901[m fix error modules
+[33m757b20c[m fix error modules
+[33m54befbf[m fix JWTSERVICE
+[33m839050f[m update app module
+[33md0f0101[m fix vercal error3
+[33m21f1e3d[m fix vercal error2
+[33mc259e2e[m fix vercal error
+[33mb7321c7[m fix vercal error
+[33m8db45ec[m vercal error
+[33mc8aa9f6[m vercel deploy
+[33m7f2e4ea[m deploy prject
+[33md1fa5c5[m first commit
